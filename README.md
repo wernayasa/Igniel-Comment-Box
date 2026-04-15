@@ -3,7 +3,9 @@
 Sebuah sistem komentar kustom untuk Blogger yang dirancang dengan inspirasi dari desain Igniel. Proyek ini memodifikasi struktur komentar bawaan Blogger menjadi tampilan yang lebih bersih, modern, dan interaktif.
 
 ## Cuplikan / Thumbnail
-![Tampilan Komentar](https://link-ke-gambar-thumbnail-anda.com/image.png](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjU2sb4ky3lMA1iQcAQAx6af00pkwVFpfYhKEzrsy4x-Zcn-W0JR8mFS4OWzw5R01JGZJlDG_fYZ7BnMvz_VEoxpuGJEczZrX3jmKU8adiADCEl6SbwYqovIH9HxofjpsuuSxC9y7NHbwHKnUw-QVhJBdqqQ_V0zk-ZhluZ4wS7Exxd1kZAWnetyqi4Ynvm/s1274/igniel_commet_clone.png)
+<p align="center">
+  <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjU2sb4ky3lMA1iQcAQAx6af00pkwVFpfYhKEzrsy4x-Zcn-W0JR8mFS4OWzw5R01JGZJlDG_fYZ7BnMvz_VEoxpuGJEczZrX3jmKU8adiADCEl6SbwYqovIH9HxofjpsuuSxC9y7NHbwHKnUw-QVhJBdqqQ_V0zk-ZhluZ4wS7Exxd1kZAWnetyqi4Ynvm/s1274/igniel_commet_clone.png" alt="Thumbnail Komentar">
+</p>
 
 ## Fitur Utama
 - **Desain Modern:** Menggunakan pendekatan minimalis yang fokus pada keterbacaan.
