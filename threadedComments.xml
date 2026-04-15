@@ -1,0 +1,178 @@
+    <b:includable id='threadedCommentJs' var='cb'>
+      <div class='avatar-image-container'>
+        <div>
+          <b:class cond='data:post.author.name == data:cb.level.author' name='admin-badge'/>
+          <b:if cond='data:cb.level.authorAvatarSrc != &quot;//resources.blogblog.com/img/blank.gif&quot;'>
+            <img class='post-thumb lazy' expr:alt='data:cb.level.author' expr:src='resizeImage(data:cb.level.authorAvatarSrc, 100, &quot;1:1&quot;)' expr:title='data:cb.level.author' loading='lazy'/>
+            <b:else/>
+            <img alt='Anonymous' class='post-thumb lazy' src='https://upload.wikimedia.org/wikipedia/commons/a/a6/Anonymous_emblem.svg' title='Anonymous'/>
+          </b:if>
+        </div>
+      </div>
+      <div class='comment-block' itemscope='itemscope' itemtype='https://schema.org/Comment'>
+        <div class='comment-header'>
+          <div>
+            <b:if cond='data:cb.level.author != &quot;Anonymous&quot;'>
+              <h5 class='user' itemprop='author' itemscope='itemscope' itemtype='https://schema.org/Person'>
+                <a expr:href='data:post.author.profileUrl' rel='author' title='author profile'><b:class cond='data:post.author.name == data:cb.level.author' name='admin-name'/><span itemprop='name'><data:cb.level.author/></span></a>
+              </h5>
+            </b:if> <time class='datetime secondary-text' itemprop='datePublished'>
+            <a expr:href='&quot;#c&quot; + data:cb.level.id' itemprop='url'>
+              <data:cb.level.timestamp/>
+            </a>
+            </time>
+          </div>
+          <b:if cond='data:cb.d and data:commentL2.size != &quot;2&quot;'>
+            <div class='comment-actions secondary-text'>
+              <input class='del' expr:id='&quot;cx&quot; + data:commentLevel1.id + data:cb.level.adminClass' type='checkbox'/>
+              <label aria-label='Hapus' expr:for='&quot;cx&quot; + data:commentLevel1.id + data:cb.level.adminClass'><svg height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M5 10c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2Zm14 0c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2Zm-7 0c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2Z' fill='currentColor'/></svg></label>
+              <span expr:class='&quot;item-control &quot; + data:cb.level.adminClass'>
+                <a expr:href='data:cb.level.deleteUrl' expr:title='data:messages.deleteComment' rel='noopener external nofollow' target='_self'>Hapus</a>
+              </span>
+            </div>
+          </b:if>
+        </div>
+        <div class='comment-content' itemprop='text'>
+          <!--<b:if cond='data:cb.level.authorUrl != data:post.author.profileUrl'>-->
+
+          <data:cb.level.body/>
+
+        </div>
+        <b:if cond='data:post.allowNewComments'>
+          <div class='comment-reply'>
+            <button class='reply-to' expr:data-reply-to='data:commentLevel1.id' href='javascript:;'>
+              <svg height='14' viewBox='0 0 24 24' width='14' xmlns='http://www.w3.org/2000/svg'><path d='M9 16h7.2l-2.6 2.6L15 20l5-5l-5-5l-1.4 1.4l2.6 2.6H9c-2.2 0-4-1.8-4-4s1.8-4 4-4h2V4H9c-3.3 0-6 2.7-6 6s2.7 6 6 6z' fill='currentColor'/></svg>
+              Balas
+            </button>
+          </div>
+        </b:if>
+      </div>
+</b:includable>
+    <b:includable id='threadedComments' var='post'>
+  <input class='hidden' id='komen' type='checkbox'/>
+  <section class='comments threaded' expr:data-embed='data:post.embedCommentForm' expr:data-num-comments='data:post.numberOfComments' id='comments'>
+  <b:include name='commentsTitle'/>
+    <b:if cond='data:post.allowNewComments'>
+      <div class='comment-add'>
+        <script>
+          var comment = true;
+        </script>
+        <div aria-label='Berkomentar' class='hidden' id='addcomment' role='button'>
+          <data:messages.postAComment/>
+        </div>
+      </div>
+    </b:if>
+    <div class='comment-form'>
+    <b:if cond='data:post.allowNewComments'>
+      <div id='threaded-comment-form'>
+        <b:include name='commentMenu'/>
+        <b:if cond='data:this.messages.blogComment != &quot;&quot;'>
+          <p>
+            <data:this.messages.blogComment/>
+          </p>
+        </b:if>
+        <b:include data='post' name='commentFormIframeSrc'/>
+        <iframe allowtransparency='allowtransparency' class='blogger-iframe-colorize blogger-comment-from-post' data-resized='true' expr:data-src='data:post.commentFormIframeSrc appendParams {skin: &quot;contempo&quot;}' expr:height='data:cmtIframeInitialHeight ?: &quot;90px&quot;' expr:src='data:post.commentFormIframeSrc appendParams {skin: &quot;contempo&quot;}' frameborder='0' id='comment-editor' name='comment-editor' width='100%'/>
+        <data:post.cmtfpIframe/>
+         <script type='text/javascript'>
+      BLOG_CMT_createIframe(&#39;<data:post.appRpcRelayPath/>&#39;);
+    </script>
+      </div>
+      <b:else/>
+      <div class='comment-disable'>
+        <data:post.noNewCommentsText/>
+      </div>
+    </b:if>
+  </div>
+  <b:if cond='data:showCmtPopup'>
+    <div id='comment-popup'>
+      <iframe allowtransparency='allowtransparency' frameborder='0' id='comment-actions' name='comment-actions' scrolling='no'/>
+    </div>
+  </b:if>
+  <b:if cond='data:post.numberOfComments &gt; 0'>
+    <div class='comments-content'>
+      <ol id='comment-holder'>
+        <b:loop reverse='true' values='data:post.comments where (c =&gt; not c.inReplyTo)' var='commentLevel1'>
+          <li class='comment' expr:id='&quot;c&quot; + data:commentLevel1.id'>
+            <b:class cond='data:post.adminClass' name='author-comment'/>
+            <b:class cond='not data:post.adminClass' name='user-comment'/>
+            <b:with value='data:post.comments where (c =&gt; c.inReplyTo == data:commentLevel1.id)' var='commentL2'>
+            <b:class cond='data:commentL2.size != &quot;0&quot;' name='r-y'/>
+            </b:with>
+            <b:include data='{level: data:commentLevel1,d: true}' name='threadedCommentJs'/>
+            <!--<div class='comment-actions'>
+              <span class='reply-to' expr:data-reply-to='data:commentLevel1.id'>Balas</span>
+              </div>-->
+            <b:with value='data:post.comments where (c =&gt; c.inReplyTo == data:commentLevel1.id)' var='commentL2'>
+              <b:if cond='data:commentL2.size != &quot;0&quot;'>
+                <div class='comment-replies'>
+                  <input class='thread-show hidden' expr:id='&quot;off-&quot; + data:commentLevel1.id' type='checkbox'/>
+                  <label class='thread-toggle thread-expanded' expr:for='&quot;off-&quot; + data:commentLevel1.id'>
+                      <svg class='thread-arrow line' height='13' viewBox='0 0 24 24' width='13' xmlns='http://www.w3.org/2000/svg'>
+                        <polyline points='6 9 12 15 18 9'/>
+                      </svg>
+                      <span class='thread-count'>Balasan</span>
+                    </label>
+                  <div class='comment-thread inline-thread' expr:id='&quot;c&quot; + data:commentLevel1.id + &quot;-rt&quot;'>
+                    <ul class='thread-chrome thread-expanded'>
+                      <b:loop values='data:commentL2' var='commentLevel2'>
+                        <li class='comment' expr:id='&quot;c&quot; + data:commentLevel2.id'>
+                          <b:class cond='data:post.adminClass' name='author-comment'/>
+                          <b:class cond='not data:post.adminClass' name='user-comment'/>
+                          <b:include data='{level: data:commentLevel2,d: true}' name='threadedCommentJs'/>
+                        </li>
+                      </b:loop>
+                    </ul>
+                  </div>
+                  <b:if cond='data:post.allowNewComments'>
+                    <div class='comment-reply'>
+                      <button class='reply-to' expr:data-reply-to='data:commentLevel1.id' href='javascript:;'>
+                        <svg height='14' viewBox='0 0 24 24' width='14' xmlns='http://www.w3.org/2000/svg'><path d='M9 16h7.2l-2.6 2.6L15 20l5-5l-5-5l-1.4 1.4l2.6 2.6H9c-2.2 0-4-1.8-4-4s1.8-4 4-4h2V4H9c-3.3 0-6 2.7-6 6s2.7 6 6 6z' fill='currentColor'/></svg>
+                      Balas
+                      </button>
+                    </div>
+                  </b:if>
+                </div>
+              </b:if>
+            </b:with>
+          </li>
+        </b:loop>
+      </ol>
+    </div>
+	<b:if cond='data:post.commentPagingRequired'>
+        <div class='paging-control-container'>
+          <b:if cond='data:post.hasOlderLinks'>
+            <a expr:class='data:post.oldLinkClass' expr:href='data:post.oldestLinkUrl'>
+              <data:messages.oldest/>
+            </a>
+            <a expr:class='data:post.oldLinkClass' expr:href='data:post.olderLinkUrl'>
+              <data:messages.older/>
+            </a>
+          </b:if>
+
+          <span class='comment-range-text'>
+            <data:post.commentRangeText/>
+          </span>
+
+          <b:if cond='data:post.hasNewerLinks'>
+            <a expr:class='data:post.newLinkClass' expr:href='data:post.newerLinkUrl'>
+              <data:messages.newer/>
+            </a>
+            <a expr:class='data:post.newLinkClass' expr:href='data:post.newestLinkUrl'>
+              <data:messages.newest/>
+            </a>
+          </b:if>
+        </div>
+      </b:if>
+    <b:else/>
+    <script>
+      var comment = false;
+    </script>
+  </b:if>
+</section>
+<b:if cond='data:post.allowNewComments'>
+	<script>
+		/*<![CDATA[*/ document.addEventListener("DOMContentLoaded", function() { var a=document, b = a.getElementById("comment-editor"), d = b.getAttribute("data-src"); if (b.setAttribute("src", d), 1 == comment) { var f = a.getElementsByClassName("reply-to"), c = a.getElementById("threaded-comment-form"), h = f.length, k = function(b, d, e, f) { b.addEventListener("click", function() { var c = b.getAttribute("data-reply-to"); a.getElementById("c" + c).appendChild(d); a.getElementById("threaded-comment-form").className = 'comment-replybox-single'; a.getElementById("addcomment").className = 'comment-reply button outline'; e.src = f + "&parentID=" + c }) }; for (i = 0; i < h; i++) k(f[i], c, b, d); var l = a.getElementsByClassName("comment-form")[0]; a.getElementById("addcomment").addEventListener("click", function() { l.appendChild(c); a.getElementById("threaded-comment-form").className = 'comment-replybox-thread'; a.getElementById("addcomment").className = 'comment-reply hidden'; b.src = d }) } }); /*]]>*/
+	</script>
+</b:if>
+</b:includable>
