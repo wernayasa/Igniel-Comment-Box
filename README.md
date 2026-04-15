@@ -23,7 +23,7 @@ Sebuah sistem komentar kustom untuk Blogger yang dirancang dengan inspirasi dari
 
 1. **Backup Template:** Selalu cadangkan template Blogger Anda sebelum melakukan perubahan.
 2. **Cari Kode Komentar:** Temukan bagian `<b:includable id='threadedCommentJs' var='post'>` dan `<b:includable id='threadedComments' var='post'>` di editor HTML Blogger Anda.
-3. **Ganti Kode:** Salin kode dari file `style.css` ke dalam template Anda.
+3. **Ganti Kode:** Salin kode dari file `style.css` dan `threadedComments.xml` ke dalam template Anda.
 4. **Simpan:** Klik simpan dan lihat hasilnya.
 
 ## Lisensi
