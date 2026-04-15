@@ -1,0 +1,107 @@
+#comments {
+--c9d: #9dafbd;
+--c30: #30363d;
+}
+.avatar-image-container{grid-area:a;}
+.comment-block{grid-area:c;}
+#threaded-comment-form{grid-area:f;}
+.comment-replies{grid-area:r;}
+.comment{display:grid;grid-template-areas:'a c' 'a r' 'a f';column-gap:1.5rem;grid-template-columns:50px 1fr;}
+.admin-badge{position:relative;}
+.admin-badge::before{content:'';position:absolute;border-radius:.5rem;box-shadow:0 0 0 1px white;height:.75rem;right:-3.5px;width:.75rem;background:var(--accent) url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='20 6 9 17 4 12' fill='none' stroke='%23fff' stroke-width='3px' /%3E%3C/svg%3E") center / .7rem no-repeat;bottom:0;z-index:1;}
+.avatar-image-container img{border-radius:99rem;}
+.comment-block,.comment-replies{--cbr:7px;padding:1rem 1.5rem;display:grid;gap:.5rem;}
+.comment-reply .reply-to{padding:.5rem .75rem;background:#30363d;border-radius:100px;font-size:80%;display:flex;gap:5px;border:none;color:white;cursor:pointer;}
+#threaded-comment-form p{background-color:#30363d;margin-top:7px;margin-bottom:7px;padding:10px;border-radius:7px;}
+.comment-block{border-radius:var(--cbr);}
+.r-y .comment-block{border-top-right-radius:var(--cbr);border-top-left-radius:var(--cbr);border-bottom-right-radius:0;border-bottom-left-radius:0;}
+.comment-replies{border-bottom-right-radius:var(--cbr);border-bottom-left-radius:var(--cbr);}
+.comment-block,.comment-replies{background-color:#0d1117;}
+.comment-replies{padding:0 1rem 1rem;}
+.comment-replies .comment-block{padding:0;}
+.comment-replies .comment{grid-template-columns:36px 1fr;column-gap:1rem;}
+.thread-show,.del,.r-y .comment-block .comment-reply{display:none;}
+.comment-header{display:flex;justify-content:space-between;}
+.user .admin-name{color:var(--accent);}
+.datetime.secondary-text a{color:#30363d;font-size:90%;}
+.user a{color:var(--c9d);}
+.comment-actions.secondary-text{position:relative;}
+.comment-actions.secondary-text label{cursor:pointer;color:#30363d;}
+.item-control{padding:0 .75rem;white-space:nowrap;z-index:1;transition:background-color .3s ease,opacity .3s linear,visibility .3s linear;opacity:0;visibility:hidden;background:#30363d;border-radius:3px;font-size:80%;}
+.thread-arrow.line{fill:white;vertical-align:middle;}
+.item-control a{color:var(--c9d);}
+.comment-actions.secondary-text{position:relative;display:flex;align-items:center;gap:1rem;flex-direction:row-reverse;}
+.inline-thread{display:grid;grid-template-rows:1fr;transition:300ms;overflow:hidden;}
+.thread-show:checked ~ .inline-thread{grid-template-rows:0fr;transition:300ms;}
+.del:checked ~ .item-control{opacity:1;visibility:visible;}
+.thread-expanded{position:relative;overflow:hidden;}
+.thread-toggle.thread-expanded::after{content:'';border-top:1px solid #30363d;opacity:1;position:absolute;right:0;left:2rem;top:.85rem;transition:border-color .3s ease,opacity .3s ease,visibility .3s ease;visibility:visible;width:calc(100% - 2rem);}
+.thread-count{position:relative;z-index:1;padding:1px 4px;background-color:#0d1117;cursor:pointer;}
+.hidden {display:none}
+#comment-holder{display:flex;flex-direction:column;}
+#komen:checked ~ #comments #comment-holder{flex-direction:column-reverse;}
+.komen-sortir svg{width:16px;height:16px;fill:var(--c9d);}
+.judul-komen{display:flex;align-items:center;justify-content:space-between;}
+.judul-komen .title{font-size:1.1rem;}
+.komen-sortir::before{content:'Terbaru';}
+#komen:checked ~ #comments .komen-sortir::before{content:'Terlama';}
+.komen-sortir{display:flex;gap:4px;align-items:center;cursor:pointer;}
+.comment-content {word-break: break-word;}
+.comment-content em{direction:ltr;display:block;max-height:250px;padding:.75rem 1rem;margin-right:-1rem;margin-left:-1rem;text-align:left;white-space:pre-wrap;font-family:menlo,consolas,monaco,monospace;background-color:#161b22;border-left:2px solid var(--accent);overflow:auto;font-size:90%;}
+.img_klik,.video_klik{cursor:pointer;background-color:var(--c30);padding:5px 10px;border-radius:5px;margin:0.8rem 0;text-align:center;font-weight:600;}
+[rel="quote"]:before{color:var(--accent);content:open-quote;font-size:4em;line-height:0.1em;margin-right:0.25em;vertical-align:-0.4em;}
+#comments i:not([rel="quote"]) {color: var(--accent);}
+.comment-add{display:flex;justify-content:center;}
+#addcomment{padding:2px 4px;border-radius:4px;background-color:var(--accent);cursor:pointer;margin-bottom:4px;}
+/* Variable Warna */
+:root{
+--font-name: 'Noto Sans', sans-serif ;
+--background-color: #0d1117;
+--content-text: #48525c;
+--border-color: #30363d;
+--textarea-background: #161b22;
+--main-color: #f89000;
+--dark-background: #2d2d30;
+--dark-text :#fffdfc;
+}
+
+/* Komentar Fitur */
+#cm-menu{position:relative;font-family:var(--font-name);font-size:14px;background:var(--background-color);border-radius:4px;padding:1rem;margin:15px 0;color:var(--content-text);line-height:1.5em;box-shadow:0 6px 18px 0 rgba(9,32,76,.075)}
+#cm-menu:before{content:'';display:block;border:11px solid;border-color:var(--background-color) transparent transparent transparent;position:absolute;bottom:-22px;left:25px}
+#parser{position:relative;margin-top:20px}
+#codes{border:1px solid var(--border-color);width:100%;height:100px;display:block;background-color:var(--textarea-background);border-radius:4px;font:400 11px 'Fira Mono',monospace;resize:none;margin:0 0 10px;padding:10px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;box-shadow:none;color: var(--c9d);}
+#codes:active,#codes:focus{border-color:var(--accent);color:#444;outline:0}
+.cm-btn{font-family:var(--font-name);font-size:12px;line-height:1.5;border-radius:2px;padding:1px 5px;border:none;color:var(--background-color);outline:0;cursor:pointer;background-color:var(--main-color);}
+.cm-btn-clr{background-color:var(--accent);margin-inline-start: auto;}
+.button-group {display: flex;gap: 5px;}
+.cm-btn-cpy{background-color:#c16c6c}
+.cm-btn:active,.cm-btn:hover,.parser:active,.parser:hover,.cm-btn:focus,.button-group button:disabled,.parser:focus{opacity:.9}
+.cm-btn-clr:active,.cm-btn-clr:hover{opacity:.9}
+.cm-btn-cpy:active,.cm-btn-cpy:hover{opacity:.9}
+.alert{padding:6px;border-radius:4px;position:absolute;top:10px;right:10px;min-width:100px}
+.alert span{font-size:12px}
+.alert-success{color:#3c763d;background-color:rgba(215,236,206,.58)}
+.checkbox{display:none}
+.cmbutton{display:flex;border-top:1px solid #30363d;border-bottom:1px solid #30363d;margin-bottom:4px;}
+.cmbutton1{border-bottom-left-radius:4px}
+.cmbutton2{border-bottom-right-radius:4px}
+.cmbutton-title{padding:10px;display:block;text-align:center}
+.cmbutton label{display:block;cursor:pointer}
+.cm-menus1:checked ~ .cmbutton .cmbutton1 .cmbutton-title, .cm-menus2:checked ~ .cmbutton .cmbutton2 .cmbutton-title{color:var(--accent)}
+.cm-menus1:checked ~ .bbcode{display:none}
+.cm-menus1:checked ~ #parser{display:none}
+.cm-menus2:checked ~ .pesan-komen{display:none}
+
+/* css darkmode sesuaikan class (.drK) dengan templatemu agar dapat berfungsi */
+.drK #cm-menu:before{border-color:var(--dark-background) transparent transparent transparent}
+.drK #cm-menu,.drK #codes,drK #codes:active,.drK #codes:focus{border-color:rgba(255,255,255,.15);background-color:var(--dark-background);color:var(--dark-text)}
+
+/* syantax komentar sesuaikan class (.comment-content) dengan template kalian agar dapat berfungsi */
+.comment-content i[rel=pre],.comment-content i[rel=code]{padding:15px;font-size:12px;margin:0;overflow-x:auto;white-space:pre;display:block;color:.e0d072;background:.262a2d;user-select:text;-webkit-user-select:text;-khtml-user-select:text;-moz-user-select:text;-ms-user-select:text}
+.comment-content i[rel=quote]{margin:0;padding:15px;border:1px dashed .ededef;border-radius:4px;font-size:13px;font-style:italic}
+.comment-content i[rel=img]{border-radius:4px}
+.pesan-komen ul{margin:;margin-left:15px;}
+.pesan-komen{font-size:90%;}
+code,.komen code,.komen-teks i,.komen-gambar-salah{color:#ff6060;}
+code,kbd,samp,textarea,.unduh figcaption,.komen-teks i,.komen-teks em,.ignielGambar .copyright{font-family:menlo,consolas,monaco,monospace;}
+.aksen {color: var(--accent)}
